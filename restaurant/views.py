@@ -14,18 +14,22 @@ def index(request):
 class MenuItemsView(generics.ListCreateAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+    permission_classes = [IsAuthenticated]
 
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+    permission_classes = [IsAuthenticated]
 
 class BookingView(generics.ListCreateAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
 
 class SingleBookingView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
 
 @api_view()
 @permission_classes([IsAuthenticated])
