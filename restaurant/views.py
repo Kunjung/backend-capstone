@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from .models import Menu, Booking
 from .serializers import MenuSerializer, BookingSerializer
@@ -24,4 +27,8 @@ class SingleBookingView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView)
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
+@api_view()
+@permission_classes([IsAuthenticated])
+def msg(request):
+    return Response({"message": "This view is secret."})
 
